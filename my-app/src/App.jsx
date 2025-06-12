@@ -28,7 +28,8 @@ const App = () => {
 
     const handleAnalyze = useCallback((file) => {
         setIsLoading(true);
-        setImage(URL.createObjectURL(file));
+        const imageUrl = URL.createObjectURL(file);
+        setImage(imageUrl);
 
         
         setTimeout(() => {
@@ -48,11 +49,18 @@ const App = () => {
     return (
         <div style={{ padding: '2rem' }}>
             <h1>Cat Breed Matcher</h1>
-            <UploadForm onSubmit={handleAnalyze} />
+            {!catBreed && <UploadForm onSubmit={handleAnalyze} />}
             {isLoading && <p>Loading...</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {catBreed && (
                 <Card>
+                    {image && (
+                        <img
+                            src={image}
+                            alt="Uploaded"
+                            className='cardresult'
+                        />
+                    )}
                     <CatBreedResult breed={catBreed} />
                 </Card>
             )}

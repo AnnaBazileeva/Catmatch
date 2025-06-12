@@ -1,3 +1,5 @@
 .cardresult {
     maxWidth: 300px;
+    borderRadius: 10px;
+    marginBottom: 1rem
 }
