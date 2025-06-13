@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import UploadForm from './components/UserForm';
 import Card from './components/Card';
 import CatBreedResult from './components/CatBreedResult';
+import './styles/App.css'
 
 const App = () => {
     const [breedList, setBreedList] = useState([]);
@@ -54,6 +55,7 @@ const App = () => {
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {catBreed && (
                 <Card>
+                    <div className="container">
                     {image && (
                         <img
                             src={image}
@@ -61,7 +63,8 @@ const App = () => {
                             className='cardresult'
                         />
                     )}
-                    <CatBreedResult breed={catBreed} />
+                    <CatBreedResult breed={catBreed} userImage={image} />
+                    </div>
                 </Card>
             )}
         </div>

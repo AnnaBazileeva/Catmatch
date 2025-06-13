@@ -1,7 +1,8 @@
-import  {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
+import "../styles/CatBreedResult.css"
 
-const CatBreedResult = ({ breed }) => {
- const [imageUrl, setImageUrl] = useState("");
+const CatBreedResult = ({breed, userImage}) => {
+    const [imageUrl, setImageUrl] = useState("");
 
     useEffect(() => {
         const fetchImage = async () => {
@@ -18,17 +19,23 @@ const CatBreedResult = ({ breed }) => {
         };
         fetchImage();
     }, [breed]);
-    if (!breed )
+    if (!breed)
         return <p>No breed selected.</p>;
 
     return (
-        <div>
+        <div className="catbreed-container">
             <h2>You look like a {breed.name}</h2>
-            {imageUrl ? (
-                <img src={imageUrl} alt={breed.name} className="cardresult" />
-            ) : (
-                <p>No image available</p>
-            )}
+            <div className="catbreed-images">
+                {imageUrl ? (
+                    <img src={imageUrl} alt={breed.name} className="cardresult"/>
+                )}
+                {imageUrl ? (
+                    <img src={imageUrl} alt={breed.name} className="cardresult" />
+                ) : (
+
+                    <p>No image available</p>
+                )}
+            </div>
             <p>{breed.description}</p>
         </div>
     );

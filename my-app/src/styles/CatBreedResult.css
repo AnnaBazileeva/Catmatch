@@ -1,5 +1,23 @@
+.catbreed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 .cardresult {
-    maxWidth: 300px;
-    borderRadius: 10px;
-    marginBottom: 1rem
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.catbreed-images {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
