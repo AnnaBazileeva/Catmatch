@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import "../styles/CatBreedResult.module.css"
+import styles from "../styles/CatBreedResult.module.css"
 
 const CatBreedResult = ({breed, userImage}) => {
     const [imageUrl, setImageUrl] = useState("");
@@ -23,19 +23,22 @@ const CatBreedResult = ({breed, userImage}) => {
         return <p>No breed selected.</p>;
 
     return (
-        <div className="catbreed-container">
+        <div className={styles.catbreedcontainer}>
+            <div className={styles.titleRow}>
+                <h2>Your Match:</h2>
             <h2>You look like a {breed.name}</h2>
-            <div className="catbreed-images">
+            </div>
+            <div className={styles.catbreedimages}>
                 {userImage && (
-                    <img src={userImage} alt="Uploaded" className="cardresult"/>
+                    <img src={userImage} alt="Uploaded" className={styles.cardresult}/>
                 )}
                 {imageUrl ? (
-                    <img src={imageUrl} alt={breed.name} className="cardresult" />
+                    <img src={imageUrl} alt={breed.name} className={styles.cardresult} />
                 ) : (
                     <p>No image available</p>
                 )}
             </div>
-            <p>{breed.description}</p>
+            <p className={styles.description}>{breed.description}</p>
         </div>
     );
 };

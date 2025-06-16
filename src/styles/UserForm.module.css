@@ -1,0 +1,48 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.fileWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.inputFile {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #333;
+    border-radius: 6px;
+    border: none;
+    margin-right: 1.2rem;
+}
+
+.submitButton {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    border-radius: 6px;
+    border: none;
+    background-color: #535bf2 ;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+    background-color: #747bff;
+}
+
+.errorText {
+    margin-top: 0.5rem;
+    color: red;
+    font-size: 0.9rem;
+}

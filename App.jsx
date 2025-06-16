@@ -1,5 +1,5 @@
 import {useState, useEffect, useCallback} from 'react';
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route,  useNavigate} from "react-router-dom";
 import Home from "./src/pages/HomePage.jsx";
 import About from "./src/pages/About.jsx";
 import Header from './src/shared/Header.jsx';
@@ -7,6 +7,7 @@ import NotFound from "./src/pages/NotFound.jsx"
 import './App.css';
 import './src/styles/fonts.css';
 import Footer from "./src/shared/Footer.jsx";
+import ResultPage from "./src/pages/ResultPage.jsx";
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
     const [catBreed, setCatBreed] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -41,8 +43,14 @@ const App = () => {
             const randomBreed = breedList[Math.floor(Math.random() * breedList.length)];
             setCatBreed(randomBreed);
             setIsLoading(false);
+            navigate('/result', {
+                state: {
+                    breed: randomBreed,
+                    userImage: imageUrl,
+                },
+            });
         }, 1500);
-    }, [breedList]);
+    }, [breedList], navigate);
 
     useEffect(() => {
         return () => {
@@ -66,6 +74,7 @@ const App = () => {
                             />
                         }
                     />
+                    <Route path="/result" element={<ResultPage />} />
                     <Route
                         path="/about"
                         element={<About/>}

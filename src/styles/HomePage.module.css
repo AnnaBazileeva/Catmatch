@@ -1,6 +1,11 @@
 .instruction {
-    margin: 1rem 0;
+    margin-bottom: 5rem;
     font-size: 1.1rem;
     color: #444;
 }
 
+.title {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 2rem;
+}

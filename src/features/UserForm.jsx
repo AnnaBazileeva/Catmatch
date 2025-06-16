@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import styles from "../styles/UserForm.module.css"
 
 const UserForm = ({ onSubmit }) => {
     const [imageFile, setImageFile] = useState(null);
@@ -15,10 +16,14 @@ const UserForm = ({ onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} />
-            <button type="submit">Analyze</button>
-            {error && <p className='button'>{error}</p>}
+        <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.row}>
+            <div className={styles.fileWrapper}>
+            <input type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} className={styles.inputFile}/>
+            </div>
+            <button type="submit" className={styles.submitButton}>Analyze</button>
+            </div>
+            {error && <p className={styles.errorText}>{error}</p>}
         </form>
     );
 };
