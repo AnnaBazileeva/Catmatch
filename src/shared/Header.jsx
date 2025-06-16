@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {NavLink, useLocation} from "react-router-dom";
 import styles from "../styles/Header.module.css";
+import catlogo from "../assets/catlogo.png"
 
 
 const Header = () => {
@@ -23,7 +24,7 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.logoTitle}>
-                {/*<img src={logo} alt="Logo" className={styles.logo}/>*/}
+                <img src={catlogo} alt="Logo" className={styles.catlogo}/>
             </div>
             <nav className={styles.nav}>
                 <NavLink

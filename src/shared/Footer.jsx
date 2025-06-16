@@ -6,7 +6,7 @@ const Footer = () => (
     <footer className={styles.footer}>
         <p>© 2025 CatMatch. Made with 🐾 by Anna Bazileeva</p>
         <p>React final project  <img src={logo} alt="CatMatch logo" className={styles.logo} />
-            <a href="https://github.com/AnnaBazileeva/Catmatch" target="_blank" rel="noreferrer">
+            <a href="https://codethedream.org" target="_blank" rel="noreferrer">
                 CTD
             </a> school
         </p>
