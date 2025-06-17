@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from "../styles/UserForm.module.css"
 
-const UserForm = ({ onSubmit }) => {
+const UploadForm = ({ onSubmit }) => {
     const [imageFile, setImageFile] = useState(null);
     const [error, setError] = useState('');
 
@@ -28,4 +28,4 @@ const UserForm = ({ onSubmit }) => {
     );
 };
 
-export default UserForm;
+export default UploadForm;
