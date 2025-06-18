@@ -1,0 +1,39 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #555;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: #000;
+}
+
+.active {
+    font-weight: bold;
+    color: #000;
+    border-bottom: 2px solid #000;
+}
+
+.inactive {
+    color: #555;
+}
+
+.catlogo {
+    width: 50px;
+    height: 50px;
+}

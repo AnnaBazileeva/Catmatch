@@ -1,3 +1,4 @@
+import '../styles/Card.module.css'
 const Card = ({ children }) => {
     return (
         <div className='card'>

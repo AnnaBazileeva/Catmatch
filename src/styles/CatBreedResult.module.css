@@ -1,0 +1,61 @@
+.catbreedcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.cardresult {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.catbreedimages {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+    .description {
+        max-width: 600px;
+        text-align: center;
+        line-height: 1.6;
+        font-size: 1.1rem;
+        color: #444;
+    }
+
+    .btn {
+        font-size: 1.3rem;
+        cursor: pointer;
+        border-radius: 6px;
+        border: none;
+        background-color: #535bf2 ;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+.btn:hover {
+    background-color: #747bff;
+    color: #1a1a1a;
+}
+
+.centerButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.titleRow {
+    display: flex;
+    gap: 1.5rem;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+}
