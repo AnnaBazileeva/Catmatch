@@ -1,5 +1,12 @@
 .card {
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 12px;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
 }

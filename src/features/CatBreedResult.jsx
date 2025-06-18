@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import styles from "../styles/CatBreedResult.module.css"
+import Card from "../shared/Card.jsx";
 
 const CatBreedResult = ({breed, userImage}) => {
     const [imageUrl, setImageUrl] = useState("");
@@ -35,10 +36,14 @@ const CatBreedResult = ({breed, userImage}) => {
                 </div>
                 <div className={styles.catbreedimages}>
                     {userImage && (
+                        <Card>
                         <img src={userImage} alt="Uploaded" className={styles.cardresult} />
+                        </Card>
                     )}
                     {imageUrl ? (
+                        <Card>
                         <img src={imageUrl} alt={breed.name} className={styles.cardresult} />
+                        </Card>
                     ) : (
                         <p>No image available</p>
                     )}
