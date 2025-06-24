@@ -50,7 +50,7 @@ const App = () => {
                 },
             });
         }, 1500);
-    }, [breedList], navigate);
+    }, [breedList, navigate]);
 
     useEffect(() => {
         return () => {
