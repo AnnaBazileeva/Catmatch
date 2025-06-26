@@ -42,17 +42,26 @@ const App = () => {
         fetchBreeds();
     }, []);
 
-    const handleAnalyze = useCallback((file) => {
+    const fileToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
+    const handleAnalyze = useCallback(async (file) => {
         setIsLoading(true);
-        const imageUrl = URL.createObjectURL(file);
-        setImage(imageUrl);
+        const base64Image = await fileToBase64(file);
+        setImage(base64Image);
 
         setTimeout(() => {
             const randomBreed = breedList[Math.floor(Math.random() * breedList.length)];
             setCatBreed(randomBreed);
             const newEntry = {
                 id: Date.now(),
-                image: imageUrl,
+                image: base64Image,
                 breed: randomBreed.name
             };
             setHistory(prev => [...prev, newEntry]);
@@ -60,7 +69,7 @@ const App = () => {
             navigate('/result', {
                 state: {
                     breed: randomBreed,
-                    userImage: imageUrl,
+                    userImage: base64Image,
                 },
             });
         }, 1500);
@@ -70,13 +79,6 @@ const App = () => {
         setHistory([]);
         localStorage.removeItem('uploadHistory');
     };
-
-    useEffect(() => {
-        return () => {
-            if (image) URL.revokeObjectURL(image);
-        };
-    }, [image]);
-
 
     return (
         <div className="layout">
