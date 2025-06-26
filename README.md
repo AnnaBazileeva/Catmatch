@@ -30,6 +30,32 @@ Project Structure
 - App.css
 - main.jsx
 
+How to Run This Project Locally:
+Step1: Download the Repository
+git clone https://github.com/your-username/catmatch.git
+cd catmatch
+
+Step 2: Install Dependencies
+npm install
+This installs: react, react-router-dom, vite, other required packages
+
+Step 3: Get an API Key from TheCatAPI
+Go to https://thecatapi.com/
+Click Sign Up (or log in if you already have an account).
+Go to your Dashboard and copy your API Key.
+
+Step 4: Create a .env File
+In the root of your project (next to package.json), create a file called: .env
+Paste this into it: VITE_API_KEY=your_api_key_here and replace your_api_key_here with the actual key you got from TheCatAPI.
+
+Step 5: Run the App
+Start the development server: npm run dev
+You should see a message like: Local:   http://localhost:5173/ Open that link in your browser.
+
+Step 6: Troubleshooting
+If you see a blank page or errors in the console, double-check your .env file and make sure your API key is valid. Restart the server after creating or updating .env
+
+
 
 Package
 `react-router-dom`  Routing between pages
