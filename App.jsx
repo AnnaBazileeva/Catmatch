@@ -16,9 +16,17 @@ const App = () => {
     const [catBreed, setCatBreed] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [history, setHistory] = useState(() => {
+        const stored = localStorage.getItem('uploadHistory');
+        return stored ? JSON.parse(stored) : [];
+    });
     const navigate = useNavigate();
 
     const API_KEY = import.meta.env.VITE_API_KEY;
+
+    useEffect(() => {
+        localStorage.setItem('uploadHistory', JSON.stringify(history));
+    }, [history]);
 
 
     useEffect(() => {
@@ -42,6 +50,12 @@ const App = () => {
         setTimeout(() => {
             const randomBreed = breedList[Math.floor(Math.random() * breedList.length)];
             setCatBreed(randomBreed);
+            const newEntry = {
+                id: Date.now(),
+                image: imageUrl,
+                breed: randomBreed.name
+            };
+            setHistory(prev => [...prev, newEntry]);
             setIsLoading(false);
             navigate('/result', {
                 state: {
@@ -51,6 +65,11 @@ const App = () => {
             });
         }, 1500);
     }, [breedList, navigate]);
+
+    const clearHistory = () => {
+        setHistory([]);
+        localStorage.removeItem('uploadHistory');
+    };
 
     useEffect(() => {
         return () => {
@@ -71,6 +90,8 @@ const App = () => {
                                 handleAnalyze={handleAnalyze}
                                 isLoading={isLoading}
                                 error={error}
+                                history={history}
+                                clearHistory={clearHistory}
                             />
                         }
                     />
