@@ -16,9 +16,17 @@ const App = () => {
     const [catBreed, setCatBreed] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [history, setHistory] = useState(() => {
+        const stored = localStorage.getItem('uploadHistory');
+        return stored ? JSON.parse(stored) : [];
+    });
     const navigate = useNavigate();
 
     const API_KEY = import.meta.env.VITE_API_KEY;
+
+    useEffect(() => {
+        localStorage.setItem('uploadHistory', JSON.stringify(history));
+    }, [history]);
 
 
     useEffect(() => {
@@ -34,30 +42,43 @@ const App = () => {
         fetchBreeds();
     }, []);
 
-    const handleAnalyze = useCallback((file) => {
+    const fileToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
+    const handleAnalyze = useCallback(async (file) => {
         setIsLoading(true);
-        const imageUrl = URL.createObjectURL(file);
-        setImage(imageUrl);
+        const base64Image = await fileToBase64(file);
+        setImage(base64Image);
 
         setTimeout(() => {
             const randomBreed = breedList[Math.floor(Math.random() * breedList.length)];
             setCatBreed(randomBreed);
+            const newEntry = {
+                id: Date.now(),
+                image: base64Image,
+                breed: randomBreed.name
+            };
+            setHistory(prev => [...prev, newEntry]);
             setIsLoading(false);
             navigate('/result', {
                 state: {
                     breed: randomBreed,
-                    userImage: imageUrl,
+                    userImage: base64Image,
                 },
             });
         }, 1500);
-    }, [breedList], navigate);
+    }, [breedList, navigate]);
 
-    useEffect(() => {
-        return () => {
-            if (image) URL.revokeObjectURL(image);
-        };
-    }, [image]);
-
+    const clearHistory = () => {
+        setHistory([]);
+        localStorage.removeItem('uploadHistory');
+    };
 
     return (
         <div className="layout">
@@ -71,6 +92,8 @@ const App = () => {
                                 handleAnalyze={handleAnalyze}
                                 isLoading={isLoading}
                                 error={error}
+                                history={history}
+                                clearHistory={clearHistory}
                             />
                         }
                     />
